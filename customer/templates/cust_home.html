@@ -1,0 +1,67 @@
+{% extends 'navbar.html' %}
+{% block content%}
+<!-- <h1 style="background-color: cadetblue; color: white; text-align: center;">CUSTOMER</h1>
+
+    {% for i in products %}
+       <p>{{i.name}}</p>
+    {%endfor%}
+
+ -->
+<!-- <h1 class="progress-bar progress-bar-striped " style="background-color:rgb(16, 56, 96) ;"> -->
+    <h1 class=" text-center" style="color: white; background-color: rgb(16, 56, 96); ">
+    <span class="material-symbols-outlined" style="height: 70px;">
+        shopping_cart_checkout
+    </span>
+    e-GADGETS
+</h1>
+
+<h3 style="color: rgb(24, 188, 243);">WELCOME, <i>{{request.user.first_name}} {{request.user.last_name}}</i></h3>
+
+
+
+
+
+
+{% if messages %}
+{% for i in messages %}
+{% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert alert-success alert-dismissible">
+    <button class="close" data-dismiss="alert">&times;</button>
+    {{i}}
+</div>
+{%endif%}
+{%endfor%}
+{% for i in messages %}
+{% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<div class="alert alert-danger alert-dismissible">
+    <button class="close" data-dismiss="alert">&times;</button>
+    {{i}}
+</div>
+{%endif%}
+{%endfor%}
+{%endif%}
+
+
+<div class="row" style="background-color: rgb(103, 103, 103);">
+    {% for i in products %}
+    <div  class="card" style="width: 18rem; background-color: rgb(103, 103, 103);" >
+        <img class="card-img-top" height="300px" width="300px" src="{{i.image.url}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{i.name}}</h5>
+            <p class="card-text">{{i.category}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <!-- <li class="list-group-item">Cras justo odio</li> -->
+            <!-- <li class="list-group-item">{{i.description}}</li>
+          <li class="list-group-item">RS:{{i.price}}</li> -->
+        </ul>
+        <div class="card-body">
+            <a href="{% url 'pdet' i.id %}" class="card-link btn btn-warning">view More</a>
+            <!-- <a href="#" class="card-link">Another link</a> -->
+        </div>
+    </div>
+    {%endfor%}
+
+</div>
+
+{% endblock content %}
